@@ -1,5 +1,6 @@
 import Button from './molecules/Button';
 import InputTextLabel from './molecules/InputTextLabel';
+import CardGrid from './organisms/CardGrid';
 import FormBoard from './organisms/FormBoard';
 
 import Dashboard from './templates/Dashboard';
@@ -12,3 +13,4 @@ export { HeaderNavBar };
 export { LandscapeBoard };
 export { FormBoard };
 export { InputTextLabel };
+export {CardGrid};

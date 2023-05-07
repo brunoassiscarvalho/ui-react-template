@@ -1,20 +1,23 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
 import { Stack } from '@mui/material';
 
 interface DashboardProps {
   children: React.ReactNode;
+  onChangeTab: (value: any) => void;
+  menu: Array<{ label: string; value: string }>;
+  startMenu?: string;
 }
 
-export default function Dashboard({ children }: DashboardProps) {
-  const [value, setValue] = React.useState('1');
+export default function Dashboard({ children, onChangeTab, menu, startMenu }: DashboardProps) {
+  const [value, setValue] = useState(startMenu || menu[0].value);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+    onChangeTab && onChangeTab(newValue);
   };
 
   return (
@@ -22,14 +25,12 @@ export default function Dashboard({ children }: DashboardProps) {
       <TabContext value={value}>
         <Stack direction="row" spacing={2}>
           <TabList onChange={handleChange} aria-label="lab API tabs example" orientation="vertical" variant="scrollable" sx={{ borderRight: 1, borderColor: 'divider', height: '100vh' }}>
-            <Tab label="Item One" value="1" />
-            <Tab label="Item Two" value="2" />
-            <Tab label="Item Three" value="3" />
+            {menu.map((menuProps) => (
+              <Tab {...menuProps} />
+            ))}
           </TabList>
-          <Box>
-            <TabPanel value="1">{children}</TabPanel>
-            <TabPanel value="2">Item Two</TabPanel>
-            <TabPanel value="3">Item Three</TabPanel>
+          <Box width="100%" height="100vh" padding={5}>
+            {children}
           </Box>
         </Stack>
       </TabContext>
