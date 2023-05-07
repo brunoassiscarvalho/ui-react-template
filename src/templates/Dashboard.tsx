@@ -29,7 +29,7 @@ export default function Dashboard({ children, onChangeTab, menu, startMenu }: Da
               <Tab {...menuProps} />
             ))}
           </TabList>
-          <Box width="100%" height="100vh" padding={5}>
+          <Box width="100%" height="100vh" padding={2}>
             {children}
           </Box>
         </Stack>
