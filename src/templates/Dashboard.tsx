@@ -32,7 +32,7 @@ export default function Dashboard({ children, onChangeTab, menu, startMenu }: Da
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Stack direction="row" spacing={2}>
-          <Box position="sticky">
+          <Box position="fixed">
             <Box display="flex" justifyContent="center" padding={3}>
               <UsbRounded />
             </Box>

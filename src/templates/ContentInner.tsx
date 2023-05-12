@@ -6,11 +6,11 @@ import IconButton from '@mui/material/IconButton';
 
 interface ContentInnerProps {
   children: React.ReactNode;
-  header: React.ReactNode;
+
   goBack: () => void;
   title: string;
 }
-export default function ContentInner({ title, children, goBack, header }: ContentInnerProps) {
+export default function ContentInner({ title, children, goBack }: ContentInnerProps) {
   return (
     <Box paddingTop={5} paddingBottom={50}>
       <FixedBar>
@@ -19,9 +19,6 @@ export default function ContentInner({ title, children, goBack, header }: Conten
             <ArrowBack />
           </IconButton>
           <Typography variant="h6">{title}</Typography>
-        </Stack>
-        <Stack direction="row" spacing={3} alignItems="center">
-          {header}
         </Stack>
       </FixedBar>
       {children}
