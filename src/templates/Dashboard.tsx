@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ReactNode, ReactElement } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -7,9 +7,9 @@ import { Stack } from '@mui/material';
 import { UsbRounded } from '@mui/icons-material';
 
 interface DashboardProps {
-  children: React.ReactNode;
+  children: ReactNode;
   onChangeTab: (value: any) => void;
-  menu: Array<{ label: string; value: string }>;
+  menu: Array<{ label?: string; value: string; icon: ReactElement }>;
   startMenu?: string;
 }
 
