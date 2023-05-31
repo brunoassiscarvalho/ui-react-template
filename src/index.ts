@@ -1,7 +1,7 @@
 import { SpeedDial } from '@mui/material';
 import Button from './molecules/Button';
 import FixedBar from './molecules/FixedBar';
-import InputTextLabel from './molecules/InputTextLabel';
+import InputTextLabel from './form/inputs/InputTextLabel';
 import CardGrid from './organisms/CardGrid';
 import FormBoard from './organisms/FormBoard';
 
@@ -10,15 +10,8 @@ import HeaderNavBar from './templates/HeaderNavBar';
 import LandscapeBoard from './templates/LandscapeBoard';
 import NavBar from './organisms/NavBar';
 import ContentInner from './templates/ContentInner';
+import Form from './form/SmartForm';
+import InputSelect from './form/inputs/InputSelect';
+import InputText from './form/inputs/InputText';
 
-export { Button };
-export { Dashboard };
-export { HeaderNavBar };
-export { LandscapeBoard };
-export { FormBoard };
-export { InputTextLabel };
-export { CardGrid };
-export { FixedBar };
-export { SpeedDial };
-export { NavBar };
-export { ContentInner };
+export { Button, Dashboard, HeaderNavBar, LandscapeBoard, FormBoard, InputTextLabel, CardGrid, FixedBar, SpeedDial, NavBar, ContentInner, Form, InputSelect, InputText };
