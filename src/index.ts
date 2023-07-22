@@ -16,4 +16,6 @@ import InputAutocomplete from './form/inputs/InputAutocomplete';
 import SmartFormArray from './form/SmartFormArray';
 import SmartFormGroup from './form/SmartFormGroup';
 
-export { Button, Dashboard, HeaderNavBar, LandscapeBoard, FormBoard, CardGrid, FixedBar, SpeedDial, NavBar, ContentInner, Form, InputSelect, InputText, InputAutocomplete, SmartFormArray, SmartFormGroup };
+import Flow from './flow/Flow'
+
+export { Button, Dashboard, HeaderNavBar, LandscapeBoard, FormBoard, CardGrid, FixedBar, SpeedDial, NavBar, ContentInner, Form, InputSelect, InputText, InputAutocomplete, SmartFormArray, SmartFormGroup, Flow };

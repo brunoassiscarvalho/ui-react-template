@@ -50,6 +50,7 @@
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.11.15"
+    "@mui/material": "^5.11.15",
+    "reactflow": "^11.7.4"
   }
 }
