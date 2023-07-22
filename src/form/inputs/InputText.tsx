@@ -1,5 +1,6 @@
-import React from "react";
+import { OutlinedInput } from '@mui/material';
+import React from 'react';
 
-export default function Input({ register, name, ...rest }:any) {
-  return <input {...register(name)} {...rest} />;
+export default function InputText(props: any) {
+  return <OutlinedInput placeholder="Placeholder" {...props} />;
 }
