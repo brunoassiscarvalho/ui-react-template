@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -14,23 +14,13 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ children, onChangeTab, menu, startMenu }: DashboardProps) {
-  const [value, setValue] = useState<string>(startMenu || menu[0].value);
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+    onChangeTab && onChangeTab(newValue);
   };
-
-  useEffect(() => {
-    console.log('vlue', value);
-    onChangeTab && onChangeTab(value);
-  }, [value]);
-
-  useEffect(() => {
-    startMenu && setValue(startMenu);
-  }, [startMenu]);
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
-      <TabContext value={value}>
+      <TabContext value={startMenu || menu[0].value}>
         <Stack direction="row" spacing={2}>
           <Box position="fixed">
             <Box display="flex" justifyContent="center" padding={3}>
