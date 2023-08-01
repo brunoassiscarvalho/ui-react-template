@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement, memo } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -13,7 +13,8 @@ interface DashboardProps {
   startMenu?: string;
 }
 
-export default function Dashboard({ children, onChangeTab, menu, startMenu }: DashboardProps) {
+const Dashboard = ({ children, onChangeTab, menu, startMenu }: DashboardProps) => {
+  
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     onChangeTab && onChangeTab(newValue);
   };
@@ -39,4 +40,10 @@ export default function Dashboard({ children, onChangeTab, menu, startMenu }: Da
       </TabContext>
     </Box>
   );
+};
+
+export default memo(Dashboard, tabPropsAreEqual);
+
+function tabPropsAreEqual(prevTab: DashboardProps, nextTab: DashboardProps) {
+  return prevTab.startMenu === nextTab.startMenu;
 }
