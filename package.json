@@ -12,12 +12,15 @@
     "start": "react-scripts start",
     "build": "tsc",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ]
   },
   "browserslist": {
@@ -33,13 +36,29 @@
     ]
   },
   "dependencies": {
-    "react-hook-form": "^7.45.2",
-    "@mui/lab": "^5.0.0-alpha.128",
-    "@mui/material": "^5.11.15",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "^5.0.0-alpha.128",
+    "@mui/material": "^5.11.15",
+    "react-hook-form": "^7.45.2",
     "reactflow": "^11.7.4"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.2.1",
+    "@storybook/addon-interactions": "^7.2.1",
+    "@storybook/addon-links": "^7.2.1",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/addon-styling": "^1.3.5",
+    "@storybook/blocks": "^7.2.1",
+    "@storybook/react": "^7.2.1",
+    "@storybook/react-vite": "^7.2.1",
+    "@storybook/testing-library": "^0.2.0",
+    "eslint-plugin-storybook": "^0.6.13",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.2.1"
   }
 }
