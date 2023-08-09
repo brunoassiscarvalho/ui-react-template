@@ -3,7 +3,6 @@ import Button from './molecules/Button';
 import FixedBar from './molecules/FixedBar';
 import CardGrid from './organisms/CardGrid';
 import FormBoard from './organisms/FormBoard';
-
 import Dashboard from './templates/Dashboard';
 import HeaderNavBar from './templates/HeaderNavBar';
 import LandscapeBoard from './templates/LandscapeBoard';
@@ -15,9 +14,9 @@ import InputText from './form/inputs/InputText';
 import InputAutocomplete from './form/inputs/InputAutocomplete';
 import SmartFormArray from './form/SmartFormArray';
 import SmartFormGroup from './form/SmartFormGroup';
-
-import Flow from './flow/Flow';
 import { NodeTypes } from 'reactflow';
+import Flow from './flow/Flow';
+import CustomNode from './flow/CustomNode';
 
 export {
   Button,
@@ -37,5 +36,6 @@ export {
   SmartFormArray,
   SmartFormGroup,
   Flow,
-  NodeTypes,
+  CustomNode,
 };
+export type { NodeTypes };

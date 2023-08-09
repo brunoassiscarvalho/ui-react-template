@@ -11,14 +11,12 @@ import ReactFlow, {
   Connection,
   Edge,
   NodeTypes,
-  Node,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
 import Sidebar from './SideBar';
 
 import './index.css';
-import { nodeTypes } from '../../../react-app-template/src/pages/trek/nodes/CustomNodesList';
 
 const initialNodes = [
   {
@@ -32,7 +30,12 @@ const initialNodes = [
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
-const DnDFlow = ({ onNodeDoubleClick }: any) => {
+interface PropsDnDFlow {
+  onNodeDoubleClick: any;
+  nodeTypes: NodeTypes;
+}
+
+const DnDFlow = ({ onNodeDoubleClick, nodeTypes }: PropsDnDFlow) => {
   const reactFlowWrapper = useRef<any>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -100,7 +103,7 @@ const DnDFlow = ({ onNodeDoubleClick }: any) => {
             <Background variant={BackgroundVariant.Dots} gap={25} size={1} />
           </ReactFlow>
         </div>
-        <Sidebar />
+        <Sidebar nodeTypes={nodeTypes} />
       </ReactFlowProvider>
     </div>
   );
