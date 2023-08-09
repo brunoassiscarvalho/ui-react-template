@@ -16,6 +16,26 @@ import InputAutocomplete from './form/inputs/InputAutocomplete';
 import SmartFormArray from './form/SmartFormArray';
 import SmartFormGroup from './form/SmartFormGroup';
 
-import Flow from './flow/Flow'
+import Flow from './flow/Flow';
+import { NodeTypes } from 'reactflow';
 
-export { Button, Dashboard, HeaderNavBar, LandscapeBoard, FormBoard, CardGrid, FixedBar, SpeedDial, NavBar, ContentInner, Form, InputSelect, InputText, InputAutocomplete, SmartFormArray, SmartFormGroup, Flow };
+export {
+  Button,
+  Dashboard,
+  HeaderNavBar,
+  LandscapeBoard,
+  FormBoard,
+  CardGrid,
+  FixedBar,
+  SpeedDial,
+  NavBar,
+  ContentInner,
+  Form,
+  InputSelect,
+  InputText,
+  InputAutocomplete,
+  SmartFormArray,
+  SmartFormGroup,
+  Flow,
+  NodeTypes,
+};

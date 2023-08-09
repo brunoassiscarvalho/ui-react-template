@@ -37,12 +37,8 @@ export default function HideAppBar(props: Props) {
   return (
     <React.Fragment>
       <HideOnScroll {...props}>
-        <AppBar
-         position="fixed"
-         sx={{ width: `calc(100% - 100px)`, ml: `50px` }}>
-          <Toolbar variant="dense">
-            
-          </Toolbar>
+        <AppBar position="fixed" sx={{ width: `calc(100% - 100px)`, ml: `50px` }}>
+          <Toolbar variant="dense"></Toolbar>
         </AppBar>
       </HideOnScroll>
       <Toolbar />

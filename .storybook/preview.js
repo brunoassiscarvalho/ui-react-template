@@ -23,7 +23,6 @@ const preview = {
 
 // .storybook/preview.js
 
-
 /* snipped for brevity */
 
 export const decorators = [
@@ -35,8 +34,7 @@ export const decorators = [
     defaultTheme: 'light',
     Provider: ThemeProvider,
     GlobalStyles: CssBaseline,
-  })];
+  }),
+];
 
 export default preview;
-
-

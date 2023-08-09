@@ -14,7 +14,6 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ children, onChangeTab, menu, startMenu }: DashboardProps) => {
-  
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     onChangeTab && onChangeTab(newValue);
   };
@@ -27,7 +26,13 @@ const Dashboard = ({ children, onChangeTab, menu, startMenu }: DashboardProps) =
             <Box display="flex" justifyContent="center" padding={3}>
               <UsbRounded />
             </Box>
-            <TabList onChange={handleChange} aria-label="lab API tabs example" orientation="vertical" variant="scrollable" sx={{ borderRight: 1, borderColor: 'divider', height: '100vh' }}>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              orientation="vertical"
+              variant="scrollable"
+              sx={{ borderRight: 1, borderColor: 'divider', height: '100vh' }}
+            >
               {menu.map((menuProps) => (
                 <Tab {...menuProps} key={menuProps.value} />
               ))}

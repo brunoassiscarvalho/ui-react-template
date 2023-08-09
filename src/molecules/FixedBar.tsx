@@ -8,8 +8,20 @@ interface FixedBottomBarProps {
 
 export default function FixedBar({ children }: FixedBottomBarProps) {
   return (
-    <Box sx={{ position: 'fixed', top: 5, minWidth: 700, display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10000 }}>
-      <Paper sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>{children}</Paper>
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 5,
+        minWidth: 700,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 10000,
+      }}
+    >
+      <Paper sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+        {children}
+      </Paper>
     </Box>
   );
 }

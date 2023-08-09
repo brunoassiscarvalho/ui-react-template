@@ -67,7 +67,6 @@ export const DeepNest = ({ children, name }: any) => (
   </ConnectForm>
 );
 
-
 export default function SmartFormGroup({ groupName, children }: SmartFormGroupProps) {
   return (
     <Stack>

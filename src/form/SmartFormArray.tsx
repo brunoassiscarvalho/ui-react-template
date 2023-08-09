@@ -20,7 +20,11 @@ export default function SmartFormArray({ children, arrayName }: any) {
           <>
             {React.Children.map(children, (child) => {
               if (!React.isValidElement<SmartFormItemProps>(child)) return <> {child}</>;
-              return child.props.name ? <DeepNest name={`${arrayName}.[${index}].${child.props.name}`}>{child}</DeepNest> : child;
+              return child.props.name ? (
+                <DeepNest name={`${arrayName}.[${index}].${child.props.name}`}>{child}</DeepNest>
+              ) : (
+                child
+              );
             })}
           </>
         </Stack>

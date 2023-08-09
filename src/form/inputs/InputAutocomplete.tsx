@@ -8,5 +8,12 @@ interface InputAutocompleteProps extends SmartFormItemBase {
 }
 
 export default function InputAutocomplete(props: InputAutocompleteProps) {
-  return <Autocomplete getOptionLabel={(option) => option.label} disablePortal {...props} renderInput={(params) => <TextField {...params} label={props.label} />} />;
+  return (
+    <Autocomplete
+      getOptionLabel={(option) => option.label}
+      disablePortal
+      {...props}
+      renderInput={(params) => <TextField {...params} label={props.label} />}
+    />
+  );
 }

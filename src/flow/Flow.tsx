@@ -1,11 +1,24 @@
 import React, { useState, useRef, useCallback } from 'react';
-import ReactFlow, { ReactFlowProvider, addEdge, useNodesState, useEdgesState, Controls, Background, BackgroundVariant, MiniMap, Connection, Edge, NodeTypes, Node } from 'reactflow';
+import ReactFlow, {
+  ReactFlowProvider,
+  addEdge,
+  useNodesState,
+  useEdgesState,
+  Controls,
+  Background,
+  BackgroundVariant,
+  MiniMap,
+  Connection,
+  Edge,
+  NodeTypes,
+  Node,
+} from 'reactflow';
 import 'reactflow/dist/style.css';
 
 import Sidebar from './SideBar';
 
 import './index.css';
-import { nodeTypes } from './CustomNodesList';
+import { nodeTypes } from '../../../react-app-template/src/pages/trek/nodes/CustomNodesList';
 
 const initialNodes = [
   {
@@ -32,10 +45,13 @@ const DnDFlow = ({ onNodeDoubleClick }: any) => {
     event.dataTransfer.dropEffect = 'move';
   }, []);
 
-
-
   const onDrop = useCallback(
-    (event: { preventDefault: () => void; dataTransfer: { getData: (arg0: string) => any }; clientX: number; clientY: number }) => {
+    (event: {
+      preventDefault: () => void;
+      dataTransfer: { getData: (arg0: string) => any };
+      clientX: number;
+      clientY: number;
+    }) => {
       event.preventDefault();
 
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
