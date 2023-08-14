@@ -18,26 +18,18 @@ import Sidebar from './SideBar';
 
 import './index.css';
 
-const initialNodes = [
-  {
-    id: '1',
-    type: 'endpointNode',
-    data: { label: 'input node' },
-    position: { x: 250, y: 5 },
-  },
-];
-
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 interface PropsDnDFlow {
   onNodeDoubleClick: any;
   nodeTypes: NodeTypes;
+  flowData: any;
 }
 
-const DnDFlow = ({ onNodeDoubleClick, nodeTypes }: PropsDnDFlow) => {
+const DnDFlow = ({ onNodeDoubleClick, nodeTypes, flowData }: PropsDnDFlow) => {
   const reactFlowWrapper = useRef<any>(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState(flowData);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 

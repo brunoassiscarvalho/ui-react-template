@@ -1,32 +1,49 @@
 import { Paper } from '@mui/material';
-import React, { memo } from 'react';
+import React, { ReactNode, memo } from 'react';
 import { Handle, Position } from 'reactflow';
 
-export default memo(({ data, isConnectable, children }: any) => {
+interface PopsCustomnode {
+  isConnectable?: boolean;
+  children: ReactNode;
+  model?: 'OutputOnly' | 'InputOnly' | 'Full';
+
+
+}
+
+export default memo(({ isConnectable, children, model = 'Full' }: PopsCustomnode) => {
   return (
-    <Paper sx={{ padding: 3 }}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        style={{ background: '#555' }}
-        onConnect={(params) => console.log('handle onConnect', params)}
-        isConnectable={isConnectable}
-      />
+    <Paper sx={{ padding: 1, minWidth:100 }}>
+      {model === 'InputOnly' || model === 'Full' ? <HandleInput isConnectable={isConnectable} /> : <></>}
       {children}
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="a"
-        style={{ top: 10, background: '#555' }}
-        isConnectable={isConnectable}
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="b"
-        style={{ bottom: 10, top: 'auto', background: '#555' }}
-        isConnectable={isConnectable}
-      />
+      {model === 'OutputOnly' || model === 'Full' ? <HandleOutput isConnectable={isConnectable} /> : <></>}
     </Paper>
   );
 });
+
+function HandleInput({ isConnectable }: any) {
+  return (
+    <Handle
+      type="target"
+      position={Position.Left}
+      style={{
+        background: '#555',
+      }}
+      onConnect={(params) => console.log('handle onConnect', params)}
+      isConnectable={isConnectable}
+    />
+  );
+}
+
+function HandleOutput({ isConnectable }: any) {
+  return (
+    <Handle
+      type="source"
+      position={Position.Right}
+      style={{
+        background: '#555',
+      }}
+      onConnect={(params) => console.log('handle onConnect', params)}
+      isConnectable={isConnectable}
+    />
+  );
+}
