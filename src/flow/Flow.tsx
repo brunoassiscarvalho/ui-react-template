@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -11,6 +11,12 @@ import ReactFlow, {
   Connection,
   Edge,
   NodeTypes,
+  ReactFlowInstance,
+  Node,
+  getIncomers,
+  getOutgoers,
+  getConnectedEdges,
+  ReactFlowJsonObject,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -25,20 +31,49 @@ interface PropsDnDFlow {
   onNodeDoubleClick: any;
   nodeTypes: NodeTypes;
   flowData: any;
+  onChange?: (data: ReactFlowJsonObject) => void;
 }
 
-const DnDFlow = ({ onNodeDoubleClick, nodeTypes, flowData }: PropsDnDFlow) => {
+const DnDFlow = ({ onNodeDoubleClick, nodeTypes, flowData, onChange }: PropsDnDFlow) => {
   const reactFlowWrapper = useRef<any>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(flowData);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
+  const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance>();
 
   const onConnect = useCallback((params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)), []);
+
+  const onChangeHandle = useCallback(() => {
+    if (reactFlowInstance && !!onChange) {
+      const flow : ReactFlowJsonObject = reactFlowInstance.toObject();
+      onChange(flow);
+    }
+  }, [reactFlowInstance]);
 
   const onDragOver = useCallback((event: { preventDefault: () => void; dataTransfer: { dropEffect: string } }) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
+
+  const onNodesDelete = useCallback(
+    (deleted: any[]) => {
+      setEdges(
+        deleted.reduce((acc, node) => {
+          const incomers = getIncomers(node, nodes, edges);
+          const outgoers = getOutgoers(node, nodes, edges);
+          const connectedEdges = getConnectedEdges([node], edges);
+
+          const remainingEdges = acc.filter((edge: Edge) => !connectedEdges.includes(edge));
+
+          const createdEdges = incomers.flatMap(({ id: source }) =>
+            outgoers.map(({ id: target }) => ({ id: `${source}->${target}`, source, target }))
+          );
+
+          return [...remainingEdges, ...createdEdges];
+        }, edges)
+      );
+    },
+    [nodes, edges]
+  );
 
   const onDrop = useCallback(
     (event: {
@@ -50,25 +85,27 @@ const DnDFlow = ({ onNodeDoubleClick, nodeTypes, flowData }: PropsDnDFlow) => {
       event.preventDefault();
 
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
+
       const type = event.dataTransfer.getData('application/reactflow');
 
-      // check if the dropped element is valid
-      if (typeof type === 'undefined' || !type) {
-        return;
+      if (!!reactFlowInstance) {
+        if (typeof type === 'undefined' || !type) {
+          return;
+        }
+
+        const position = reactFlowInstance.project({
+          x: event.clientX - reactFlowBounds.left,
+          y: event.clientY - reactFlowBounds.top,
+        });
+
+        const newNode: Node<any, string | undefined> = {
+          id: getId(),
+          type,
+          position,
+          data: { label: `${type} node` },
+        };
+        setNodes((nds) => nds.concat(newNode));
       }
-
-      const position = reactFlowInstance.project({
-        x: event.clientX - reactFlowBounds.left,
-        y: event.clientY - reactFlowBounds.top,
-      });
-      const newNode = {
-        id: getId(),
-        type,
-        position,
-        data: { label: `${type} node` },
-      };
-
-      setNodes((nds) => nds.concat(newNode));
     },
     [reactFlowInstance]
   );
@@ -81,9 +118,16 @@ const DnDFlow = ({ onNodeDoubleClick, nodeTypes, flowData }: PropsDnDFlow) => {
             nodes={nodes}
             edges={edges}
             nodeTypes={nodeTypes}
-            onNodesChange={onNodesChange}
+            onNodesChange={(change) => {
+              onNodesChange(change);
+              onChangeHandle();
+            }}
             onNodeDoubleClick={onNodeDoubleClick}
-            onEdgesChange={onEdgesChange}
+            onEdgesChange={(change) => {
+              onEdgesChange(change);
+              onChangeHandle();
+            }}
+            onNodesDelete={onNodesDelete}
             onConnect={onConnect}
             onInit={setReactFlowInstance}
             onDrop={onDrop}

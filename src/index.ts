@@ -14,7 +14,7 @@ import InputText from './form/inputs/InputText';
 import InputAutocomplete from './form/inputs/InputAutocomplete';
 import SmartFormArray from './form/SmartFormArray';
 import SmartFormGroup from './form/SmartFormGroup';
-import { NodeTypes } from 'reactflow';
+import { NodeTypes, ReactFlowJsonObject } from 'reactflow';
 import Flow from './flow/Flow';
 import CustomNode from './flow/CustomNode';
 
@@ -38,4 +38,4 @@ export {
   Flow,
   CustomNode,
 };
-export type { NodeTypes };
+export type { NodeTypes, ReactFlowJsonObject as FlowObject};
