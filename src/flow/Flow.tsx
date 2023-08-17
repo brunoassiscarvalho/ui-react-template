@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -36,15 +36,21 @@ interface PropsDnDFlow {
 
 const DnDFlow = ({ onNodeDoubleClick, nodeTypes, flowData, onChange }: PropsDnDFlow) => {
   const reactFlowWrapper = useRef<any>(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(flowData);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState(flowData.nodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(flowData.edges);
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance>();
 
-  const onConnect = useCallback((params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)), []);
+  const onConnect = useCallback((params: Edge | Connection) => {
+    setEdges((eds) => addEdge(params, eds));
+  }, []);
+
+  useEffect(() => {
+    onChangeHandle();
+  }, [edges, nodes]);
 
   const onChangeHandle = useCallback(() => {
     if (reactFlowInstance && !!onChange) {
-      const flow : ReactFlowJsonObject = reactFlowInstance.toObject();
+      const flow: ReactFlowJsonObject = reactFlowInstance.toObject();
       onChange(flow);
     }
   }, [reactFlowInstance]);
@@ -118,15 +124,9 @@ const DnDFlow = ({ onNodeDoubleClick, nodeTypes, flowData, onChange }: PropsDnDF
             nodes={nodes}
             edges={edges}
             nodeTypes={nodeTypes}
-            onNodesChange={(change) => {
-              onNodesChange(change);
-              onChangeHandle();
-            }}
+            onNodesChange={onNodesChange}
             onNodeDoubleClick={onNodeDoubleClick}
-            onEdgesChange={(change) => {
-              onEdgesChange(change);
-              onChangeHandle();
-            }}
+            onEdgesChange={onEdgesChange}
             onNodesDelete={onNodesDelete}
             onConnect={onConnect}
             onInit={setReactFlowInstance}

@@ -3,7 +3,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
 import Card, { CardProps } from '../molecules/Card';
 
-interface CardGridProps {
+interface CardGridProps {  
   dataSource: Array<CardProps>;
 }
 

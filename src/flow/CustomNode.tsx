@@ -6,8 +6,6 @@ interface PopsCustomnode {
   isConnectable?: boolean;
   children: ReactNode;
   model?: 'OutputOnly' | 'InputOnly' | 'Full';
-
-
 }
 
 export default memo(({ isConnectable, children, model = 'Full' }: PopsCustomnode) => {
