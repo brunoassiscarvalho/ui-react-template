@@ -1,6 +1,6 @@
-import { OutlinedInput } from '@mui/material';
 import React from 'react';
+import { OutlinedInput, OutlinedInputProps } from '@mui/material';
 
-export default function InputText(props: any) {
-  return <OutlinedInput placeholder="Placeholder" {...props} />;
+export default function InputText(props: OutlinedInputProps) {
+  return <OutlinedInput {...props} />;
 }

@@ -25,7 +25,10 @@ export function SmartFormItem({ name, control, children, defaultValue, label, ..
         name={name}
         control={control}
         defaultValue={defaultValue}
-        render={({ field }) => React.createElement(children.type, { ...field, ...rest })}
+        render={({ field }) => {
+          console.log({ field, rest });
+          return React.createElement(children.type, { ...field, ...rest });
+        }}
       />
     </FormControl>
   );
