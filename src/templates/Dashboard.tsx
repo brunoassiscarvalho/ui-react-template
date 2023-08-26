@@ -38,7 +38,7 @@ const Dashboard = ({ children, onChangeTab, menu, startMenu }: DashboardProps) =
               ))}
             </TabList>
           </Box>
-          <Box width="100%" height="100vh" padding={2} paddingLeft={15}>
+          <Box width="100%" height="100vh" padding={2} paddingLeft={9}>
             {children}
           </Box>
         </Stack>

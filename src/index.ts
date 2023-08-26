@@ -17,6 +17,8 @@ import SmartFormGroup from './form/SmartFormGroup';
 import { NodeTypes, ReactFlowJsonObject } from 'reactflow';
 import Flow from './flow/Flow';
 import CustomNode from './flow/CustomNode';
+import SnackbarProvider from './organisms/SnackbarProvider';
+import { enqueueSnackbar } from 'notistack';
 
 export {
   Button,
@@ -37,5 +39,7 @@ export {
   SmartFormGroup,
   Flow,
   CustomNode,
+  SnackbarProvider,
+  enqueueSnackbar
 };
 export type { NodeTypes, ReactFlowJsonObject as FlowObject};

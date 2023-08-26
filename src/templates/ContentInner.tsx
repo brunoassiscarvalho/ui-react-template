@@ -1,27 +1,40 @@
 import React from 'react';
-import { FixedBar } from '@mern-monorepo/ui-react-template';
-import { Box, Stack, Typography } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
+import { Box, Paper, Stack, Typography } from '@mui/material';
+import { AddToQueue, ArrowBack } from '@mui/icons-material';
 import IconButton from '@mui/material/IconButton';
 
 interface ContentInnerProps {
   children: React.ReactNode;
-
-  goBack: () => void;
   title: string;
+  isGoback?: boolean;
+  goBack?: () => void;
 }
-export default function ContentInner({ title, children, goBack }: ContentInnerProps) {
+export default function ContentInner({ title, children, goBack, isGoback = true }: ContentInnerProps) {
   return (
-    <Box paddingTop={5} paddingBottom={50}>
-      <FixedBar>
+    <Stack width="100%" spacing={3}>
+      <Stack
+        spacing={3}
+        direction="row"
+        alignItems="center"
+        height="4vh"
+        borderBottom={2}
+        padding={2}
+        borderColor="green"
+        paddingBottom={4}
+      >
         <Stack direction="row" spacing={3} alignItems="center">
-          <IconButton color="primary" aria-label="upload picture" component="label" onClick={goBack}>
-            <ArrowBack />
-          </IconButton>
-          <Typography variant="h6">{title}</Typography>
+          <Box sx={{ marginLeft:10, width: 35, height: 35  }}>
+            {isGoback && (
+              <IconButton aria-label="delete" size="small" onClick={goBack}>
+                <ArrowBack />
+              </IconButton>
+            )}
+          </Box>
+          <AddToQueue fontSize="large" />
+          <Typography variant="h5">{title}</Typography>
         </Stack>
-      </FixedBar>
-      {children}
-    </Box>
+      </Stack>
+      <Box padding={2}> {children}</Box>
+    </Stack>
   );
 }
