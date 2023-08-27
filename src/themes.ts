@@ -11,7 +11,7 @@ export const lightTheme = createTheme(
       },
     },
     palette: {
-      mode: 'dark',
+      mode: 'dark', 
       primary: {
         main: '#466b49',
       },

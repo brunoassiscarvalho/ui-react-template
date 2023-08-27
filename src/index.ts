@@ -19,6 +19,7 @@ import Flow from './flow/Flow';
 import CustomNode from './flow/CustomNode';
 import SnackbarProvider from './organisms/SnackbarProvider';
 import { enqueueSnackbar } from 'notistack';
+import LinearIndeterminate from './molecules/LinearIndeterminate';
 
 export {
   Button,
@@ -40,6 +41,7 @@ export {
   Flow,
   CustomNode,
   SnackbarProvider,
-  enqueueSnackbar
+  enqueueSnackbar,
+  LinearIndeterminate
 };
 export type { NodeTypes, ReactFlowJsonObject as FlowObject};
