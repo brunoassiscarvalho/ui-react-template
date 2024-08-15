@@ -1,10 +1,58 @@
-import { SpeedDial } from '@mui/material';
+import { enqueueSnackbar } from 'notistack';
+import {
+  
+  ArrowBack,
+  AddToQueue,
+  Search,
+  Add,
+  Boy,
+  AccessTimeFilledTwoTone,
+  Error,
+  ArrowCircleUpRounded,
+  ThumbUp,
+} from '@mui/icons-material';
+import SnackbarProvider from './organisms/SnackbarProvider';
+import { ThemeProvider } from '@mui/material/styles';
+import {
+  Theme,
+  SpeedDial,
+  MenuItem,
+  AppBar,
+  Box,
+  Select,
+  Toolbar,
+  Tab,
+  CssBaseline,
+  Divider,
+  Slide,
+  ListItem,
+  Drawer,
+  List,
+  ListItemButton,
+  CardContent,
+  ListItemText,
+  IconButton,
+  Typography,
+  Stack,
+  InputBase,
+  Paper,
+  createTheme,
+  Grid,
+  ButtonBase,
+  ToggleButton,
+  ToggleButtonGroup,
+  ButtonGroup
+} from '@mui/material';
+
+import { ptBR } from '@mui/material/locale';
+import { SubmitHandler } from 'react-hook-form';
+import { NodeTypes, ReactFlowJsonObject } from 'reactflow';
+
 import Button from './molecules/Button';
 import FixedBar from './molecules/FixedBar';
 import CardGrid from './organisms/CardGrid';
 import FormBoard from './organisms/FormBoard';
-import Dashboard from './templates/Dashboard';
-import HeaderNavBar from './templates/HeaderNavBar';
+import DashboardTabs from './templates/DashboardTabs';
 import LandscapeBoard from './templates/LandscapeBoard';
 import NavBar from './organisms/NavBar';
 import ContentInner from './templates/ContentInner';
@@ -14,17 +62,19 @@ import InputText from './form/inputs/InputText';
 import InputAutocomplete from './form/inputs/InputAutocomplete';
 import SmartFormArray from './form/SmartFormArray';
 import SmartFormGroup from './form/SmartFormGroup';
-import { NodeTypes, ReactFlowJsonObject } from 'reactflow';
 import Flow from './flow/Flow';
 import CustomNode from './flow/CustomNode';
-import SnackbarProvider from './organisms/SnackbarProvider';
-import { enqueueSnackbar } from 'notistack';
 import LinearIndeterminate from './molecules/LinearIndeterminate';
+import SideToolBar from './organisms/SideToolBar';
+import ToggleButtons from './molecules/ToggleButton';
+import ContinuousSlider from './molecules/ContinuousSlider';
+import DashboardNavBar from './templates/DashboardNavBar';
+
 
 export {
   Button,
-  Dashboard,
-  HeaderNavBar,
+  DashboardTabs,
+  DashboardNavBar,
   LandscapeBoard,
   FormBoard,
   CardGrid,
@@ -40,8 +90,49 @@ export {
   SmartFormGroup,
   Flow,
   CustomNode,
+  MenuItem,
+  AppBar,
+  Box,
+  Select,
+  Toolbar,
+  Tab,
+  CssBaseline,
+  Divider,
+  Slide,
+  ListItem,
+  Drawer,
+  List,
+  ListItemButton,
+  CardContent,
+  ListItemText,
+  IconButton,
+  Typography,
+  Stack,
+  Paper,
+  ThemeProvider,
+  InputBase,
   SnackbarProvider,
   enqueueSnackbar,
-  LinearIndeterminate
+  LinearIndeterminate,
+  createTheme,
+  Grid,
+  SideToolBar,
+  AddToQueue as IconAddToQueue,
+  ArrowBack as IconArrowBack,
+  Search as IconSearch,
+  Add as IconAdd,
+  Boy as IconBoy,
+  AccessTimeFilledTwoTone as IconAccessTimeFilledTwoTone,
+  Error as IconError,
+  ArrowCircleUpRounded as IconArrowCircleUpRounded,
+  ThumbUp as IconThumbUp,
+  ptBR as localePtBR,
+  ButtonBase,
+  ToggleButton,
+  ToggleButtonGroup,
+  ButtonGroup,
+  ToggleButtons,
+  ContinuousSlider,
+  
 };
-export type { NodeTypes, ReactFlowJsonObject as FlowObject};
+export type { NodeTypes, SubmitHandler, ReactFlowJsonObject as FlowObject, Theme };
