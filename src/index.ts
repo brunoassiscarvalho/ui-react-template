@@ -69,6 +69,7 @@ import SideToolBar from './organisms/SideToolBar';
 import ToggleButtons from './molecules/ToggleButton';
 import ContinuousSlider from './molecules/ContinuousSlider';
 import DashboardNavBar from './templates/DashboardNavBar';
+import TextLabel from './organisms/TextLabel';
 
 
 export {
@@ -133,6 +134,6 @@ export {
   ButtonGroup,
   ToggleButtons,
   ContinuousSlider,
-  
+  TextLabel
 };
 export type { NodeTypes, SubmitHandler, ReactFlowJsonObject as FlowObject, Theme };

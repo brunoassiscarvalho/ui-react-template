@@ -5,7 +5,7 @@ import { DeepNest } from './SmartFormGroup';
 import { SmartFormItemProps } from './SmartFormItem';
 import Button from '../molecules/Button';
 
-export default function SmartFormArray({ children, arrayName }: any) {
+export default function SmartFormArray({ children, arrayName , label}: any) {
   const { control } = useFormContext();
   const { fields, append } = useFieldArray({
     control,
@@ -13,10 +13,9 @@ export default function SmartFormArray({ children, arrayName }: any) {
   });
 
   return (
-    <>
-      {fields.map((field, index) => (
-        <Stack spacing={3}>
-          <Divider></Divider>
+    <Stack spacing={3}>
+          <Divider>{label}</Divider>
+      {fields.map((field, index) => (       
           <>
             {React.Children.map(children, (child) => {
               if (!React.isValidElement<SmartFormItemProps>(child)) return <> {child}</>;
@@ -26,10 +25,8 @@ export default function SmartFormArray({ children, arrayName }: any) {
                 child
               );
             })}
-          </>
-        </Stack>
+          </>        
       ))}
-
       <Button
         type="button"
         onClick={() => {
@@ -38,6 +35,6 @@ export default function SmartFormArray({ children, arrayName }: any) {
       >
         append
       </Button>
-    </>
+      </Stack>
   );
 }
